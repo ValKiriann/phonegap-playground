@@ -1,0 +1,2 @@
+# phonegap-playground
+Learning phonegap
