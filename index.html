@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="css/own/styles.css">
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Lato:900|Saira+Extra+Condensed:600" rel="stylesheet">
-
+  <script src="cordova.js"></script>
 </head>
 <body>
   <div class="main-container">
 
     <header class="header-container container-fluid ">
       <div class="logo-container">
-        <img class="logo" src="images/logo.png" alt="MasMovil logo">
+        <img class="logo" src="images/logo.png" alt="MasMovil logo" id="myImage">
         <p class="sub-logo"> Distribuidor autorizado </p>
       </div>
       <div class="nav-div">
@@ -30,6 +30,8 @@
         </nav>
       </div>
     </header>
+    
+    
 
     <!--    PROMOS INFO   -->
     <section class="info">
@@ -195,5 +197,23 @@
     <script src="js/bootstrap.min.js" charset="utf-8"></script>
     <script src="js/own.js" charset="utf-8"></script>
     <script src="js/navbar.js" charset="utf-8"></script>
+    <script>
+      document.addEventListener("deviceready", onDeviceReady, false);
+      function onDeviceReady() {
+        console.log(navigator.camera);
+        var cameraOptions = {
+          saveToPhotoAlbum: true,
+          quality: 100
+        }
+        navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions);
+        function cameraSuccess(imageData) {
+          var image = document.getElementById('myImage');
+          image.src = "data:image/jpeg;base64," + imageData;
+        }
+        function cameraError(err) {
+          console.error('error', err);
+        }
+      }
+    </script>
   </body>
   </html>
